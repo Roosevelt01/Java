@@ -1,7 +1,7 @@
 int [] a,b,c;
 a = new int[10];
 b = new int[10];
-c = new int[10];
+c = new int[20];
 
 for(int i = 0;i < a.lenght; i++){
   a[i] = i+1;
