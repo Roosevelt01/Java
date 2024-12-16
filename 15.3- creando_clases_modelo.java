@@ -68,10 +68,6 @@ public class Factura {
         return folio;
     }
 
-    public void setFolio(int folio) {
-        this.folio = folio;
-    }
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -85,13 +81,86 @@ public class Factura {
     }
 
     public void addItem(ItemFactura item) {
-        this.items[indiceItems++] = item;
+       if(indiceItems < MAX_ITEMS) {
+           this.items[indiceItems++] = item;
+       }
     }
-
 }
 
-//Cliente
+//Folio
+package org.aguzman.appfacturas.modelo;
 
-//Cliente
 
-//Cliente
+import java.util.Date;
+
+public class folio {
+    private int folio;
+    private String descripcion;
+    private Date fecha;
+}
+
+//ItemFacturas
+
+package org.aguzman.appfacturas.modelo;
+
+public class ItemFactura {
+    private int cantidad;
+    private Producto producto;
+
+    public ItemFactura(int cantidad, Producto producto) {
+        this.cantidad = cantidad;
+        this.producto = producto;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+}
+
+//Producto
+
+package org.aguzman.appfacturas.modelo;
+
+public class Producto {
+    private int codigo;
+    private String nombre;
+    private float precio;
+    private static int ultimoCodigo;
+
+    public Producto() {
+        this.codigo = ++ultimoCodigo;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+}
+
