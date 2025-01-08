@@ -34,6 +34,10 @@ public class LargoValidador extends Validador{
 
     @Override
     public boolean esValido(String valor) {
-        return false;
+        if (valor == null) {
+            return false; // Si el valor es nulo, no es válido
+        }
+        int longitud = valor.length();
+        return longitud >= min && longitud <= max;
     }
 }
