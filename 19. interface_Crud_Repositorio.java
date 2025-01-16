@@ -82,7 +82,7 @@ import org.aguzman.poointerfaces.modelo.Cliente;
 import java.util.List;
 
 public interface OrdenableRepositorio {
-    List<Cliente> listar(String campo, String dir);
+    List<Cliente> listar(String campo, Direccion dir);
 }
 
 //Interface PaginableRepositorio
