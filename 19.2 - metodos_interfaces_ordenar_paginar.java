@@ -51,8 +51,7 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
         this.dataSource.remove(c);
     }
 
-    //Modificado
-    
+    //Modificación #1
     @Override
     public List<Cliente> listar(String campo, Direccion dir) {
         dataSource.sort((a, b) -> {
@@ -84,8 +83,9 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
         return dataSource;
     }
 
+    //Modificación #2
     @Override
     public List<Cliente> listar(int desde, int hasta) {
-        return List.of();
+        return dataSource.subList(desde,hasta);
     }
 }
