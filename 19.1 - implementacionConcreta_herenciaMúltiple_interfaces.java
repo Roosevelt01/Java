@@ -44,7 +44,7 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
     }
 
     @Override
-    public List<Cliente> listar(String campo, String dir) {
+    public List<Cliente> listar(String campo, Direccion dir) {
         return List.of();
     }
 
