@@ -13,9 +13,9 @@ public class Camion implements Iterable{
         this.objetos = new ArrayList<>();
     }
 
-    public void add(Object object){
+    public void add(Object objecto){
         if(this.objetos.size() <= max){
-            this.objetos.add(objetos);
+            this.objetos.add(objeto);
         }else{
             throw new RuntimeException("No hay más espacion.");
         }
