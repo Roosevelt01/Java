@@ -42,18 +42,6 @@ public class Usuario {
     public String toString() {
         return "Usuario{nombre='" + nombre + "', apellido='" + apellido + "'}";
     }
-
-    @Override
-    public boolean equals(Object object) {
-        if (object == null || getClass() != object.getClass()) return false;
-        Usuario usuario = (Usuario) object;
-        return Objects.equals(nombre, usuario.nombre) && Objects.equals(apellido, usuario.apellido);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nombre, apellido);
-    }
 }
 
 //Clase main Principal
