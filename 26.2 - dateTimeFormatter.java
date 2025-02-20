@@ -5,8 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class EjemploLocalTime {
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("Ejemplo #1");
         LocalTime ahora = LocalTime.now();
         DateTimeFormatter df = DateTimeFormatter.ofPattern("hh:mm:ss a");
@@ -28,7 +27,7 @@ public class EjemploLocalTime {
         System.out.println("\nEjemplo #4");
         LocalTime seisConTreinta3 = LocalTime.parse("06:30");
         DateTimeFormatter df4 = DateTimeFormatter.ofPattern("HH:mm:ss a");
-        String ahoraFormatedo4 = seisConTreinta3.format(df3);
+        String ahoraFormatedo4 = seisConTreinta3.format(df4);
         System.out.println(ahoraFormatedo4);
 
         System.out.println("\nEjemplo #5");
