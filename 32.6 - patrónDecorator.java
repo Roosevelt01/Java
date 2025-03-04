@@ -53,3 +53,30 @@ public class Coporacion extends Observable{
         notifyObserver();
     }
 }
+
+//
+package org.aguzman.patrones.observer;
+
+public class Coporacion extends Observable{
+    private String nombre;
+    private int precio;
+
+    public Coporacion(String nombre, int precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void modificarPrecio(int precio){
+        this.precio = precio;
+        notifyObserver();
+    }
+}
+
