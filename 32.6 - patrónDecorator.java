@@ -85,3 +85,38 @@ public class EjemploObserver {
         google.modificarPrecio(2000);
     }
 }
+
+//Segundo ejemplo
+
+package org.aguzman.patrones.observer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UsuarioRepositorio  extends Observable {
+    private List<String> repositorio = new ArrayList<>();
+
+    public void crearUsuario(String usuario){
+        repositorio.add(usuario);
+        notifyObserver();
+    }
+}
+
+//
+package org.aguzman.patrones.observer.Ejemplo;
+
+import org.aguzman.patrones.observer.Corporacion;
+import org.aguzman.patrones.observer.UsuarioRepositorio;
+
+public class EjemploObserver2 {
+    public static void main(String[] args) {
+        UsuarioRepositorio repo = new UsuarioRepositorio();
+
+        repo.addObserver(o -> System.out.println("Enviando un email al usuario"));
+        repo.addObserver(o -> System.out.println("Enviando un email al administrador"));
+        repo.addObserver(o -> System.out.println("Guardando info del usuario en el logs"));
+
+        repo.crearUsuario("Andrés");
+    }
+}
+
