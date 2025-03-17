@@ -39,3 +39,10 @@ public class EjemploCallableStatement {
     }
 }
 
+/*Explicación:
+    - prepareCall(): Prepara la llamada al procedimiento almacenado.
+    - setInt(): Asigna un valor al parámetro de entrada.
+    - registerOutParameter(): Registra un parámetro de salida.
+    - execute(): Ejecuta el procedimiento almacenado.
+    - getString(): Obtiene el valor del parámetro de salida.
+*/
