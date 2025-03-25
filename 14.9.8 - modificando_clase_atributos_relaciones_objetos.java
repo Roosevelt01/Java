@@ -23,7 +23,8 @@ public class EjemploAutomovil {
         System.out.println("Estanque: " + mazda.getEstanque().getCapacidad() + " litros");
         System.out.println("Ruedas:");
         for(Rueda rueda : ruedasMazda) {
-            System.out.println("  - Ancho: " + rueda.getAncho() + ", Aro: " + rueda.getAro() + ", Fabricante: " + rueda.getFabricante());
+            System.out.println("  - Ancho: " + rueda.getAncho() + ", Aro: " + rueda.getAro() + 
+            ", Fabricante: " + rueda.getFabricante());
         }
     }
 }
@@ -165,7 +166,7 @@ public class Estanque {
     }
 }
 
-//Estanque
+//Rueda
 public class Rueda {
     private String fabricante;
     private int aro;
