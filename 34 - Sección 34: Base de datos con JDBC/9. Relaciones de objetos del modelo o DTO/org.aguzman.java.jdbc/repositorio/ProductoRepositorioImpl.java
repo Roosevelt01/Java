@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/***
  * Implementación del repositorio de productos con soporte para relaciones con categorías.
  * Incluye operaciones CRUD completas con manejo de la relación Producto-Categoría.
  */
