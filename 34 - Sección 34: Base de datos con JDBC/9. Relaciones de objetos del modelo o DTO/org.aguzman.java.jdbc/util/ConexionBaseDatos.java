@@ -9,8 +9,11 @@ public class ConexionBaseDatos {
     private static String username = "root";
     private static String password = "root";
     private  static Connection connection;
-       
+
     public static Connection getInstance() throws SQLException {
-        return DriverManager.getConnection(url,username,password);
+        if(connection == null){
+            connection = DriverManager.getConnection(url,username,password);
+        }
+        return connection;
     }
 }
