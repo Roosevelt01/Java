@@ -1,26 +1,31 @@
 package org.aguzman.java.jdbc;
 
+import org.aguzman.java.jdbc.modelo.Producto;
 import org.aguzman.java.jdbc.repositorio.ProductoRepositorioImpl;
 import org.aguzman.java.jdbc.repositorio.Repositorio;
+import org.aguzman.java.jdbc.util.ConexionBaseDatos;
 
-/**
- * Ejemplo de eliminación con nuevo esquema de conexiones
- * (Cambio: Sin gestión explícita de conexión)
- */
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Date;
+
 public class EjemploJdbcDelete {
     public static void main(String[] args) {
-        // Repositorio autónomo en manejo de conexiones
-        Repositorio<Producto> repositorio = new ProductoRepositorioImpl();
-        
-        System.out.println("========== LISTADO INICIAL ==========");
-        repositorio.listar().forEach(System.out::println);  // Conexión interna
+        try(Connection conn = ConexionBaseDatos.getInstance()) {
+            Repositorio<Producto> repositorio = new ProductoRepositorioImpl();
+            System.out.println("Lista completa");
+            repositorio.listar().forEach(System.out::println);
 
-        System.out.println("\n========== ELIMINAR PRODUCTO ==========");
-        Long idEliminar = 3L;  // ID a eliminar
-        repositorio.eliminar(idEliminar);  // El repositorio maneja su conexión
-        System.out.println("Producto eliminado exitosamente!");
-        
-        System.out.println("\n========== LISTADO FINAL ==========");
-        repositorio.listar().forEach(System.out::println);
+            System.out.println("\nLista por por id");
+            System.out.println(repositorio.porId(1L));
+
+            System.out.println("\nEliminar producto");
+            repositorio.eliminar(3L);
+            System.out.println("Producto eliminado con éxito");
+            repositorio.listar().forEach(System.out::println);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
