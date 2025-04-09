@@ -1,0 +1,39 @@
+<h1>Conceptos Clave Extendidos: ACID</h1>
+
+    <p>
+        En el contexto de las bases de datos transaccionales, el acrónimo ACID representa un conjunto de propiedades que garantizan la confiabilidad y la integridad de las transacciones. Estas propiedades son fundamentales para asegurar que los datos permanezcan consistentes y precisos, incluso en situaciones de fallos o acceso concurrente.
+    </p>
+
+    <ul>
+        <li>
+            <strong>Atomicidad (Atomicity):</strong>
+            <p>
+                Una transacción debe ser una unidad indivisible de trabajo. Todas las operaciones dentro de ella deben completarse con éxito o, en caso de falla, todos los cambios deben revertirse. Esto asegura que la base de datos permanezca en un estado consistente.
+            </p>
+        </li>
+
+        <li>
+            <strong>Consistencia (Consistency):</strong>
+            <p>
+                Una transacción debe llevar la base de datos de un estado consistente a otro estado consistente. Esto significa que las reglas de integridad de la base de datos deben mantenerse antes y después de la transacción.
+            </p>
+        </li>
+
+        <li>
+            <strong>Aislamiento (Isolation):</strong>
+            <p>
+                Las transacciones concurrentes deben ejecutarse de forma aislada entre sí para evitar interferencias. Esto garantiza que el resultado de una transacción no se vea afectado por otras transacciones en curso.
+            </p>
+        </li>
+
+        <li>
+            <strong>Durabilidad (Durability):</strong>
+            <p>
+                Una vez que una transacción se ha confirmado (commit), los cambios deben ser permanentes, incluso en caso de fallas del sistema. Esto se logra mediante el registro de transacciones y la recuperación de fallos.
+            </p>
+        </li>
+    </ul>
+
+    <p>
+        El cumplimiento de las propiedades ACID es crucial para aplicaciones que requieren alta confiabilidad y precisión de datos, como sistemas financieros, sistemas de gestión de inventario y sistemas de reservas.
+    </p>
