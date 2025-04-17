@@ -8,43 +8,20 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CuentaTest{
+    
+    @Test // Indica que este método es una prueba JUnit
+    void testReferenciaCuenta() { // Define el método de prueba para la comparación por referencia
+        Cuenta cuenta = new Cuenta("John Doe", new BigDecimal("8900.9997")); // Crea una instancia de Cuenta
+        Cuenta cuenta2 = new Cuenta("John Doe", new BigDecimal("8900.9997")); // Crea otra instancia de Cuenta con los mismos datos
 
-    //Ejemplo 1
-    @Test
-    void testNombreCuenta() { // Nombre simple inicial
-        // Arrange
-        Cuenta cuenta = new Cuenta(); // Asumiendo constructor vacío existe
-        //cuenta.setPersona("Andres"); 
-        String esperado = "Andres"; // Valor que esperamos obtener
+        assertNotEquals(cuenta2, cuenta); // Asegura que las dos instancias NO son iguales (por referencia)
+    }   
 
-        // Act
-        String real = cuenta.getPersona(); // Obtener el nombre establecido
+    @Test // Indica que este método es una prueba JUnit
+    void testReferenciaCuenta() { // Define el método de prueba (mismo nombre, pero diferente intención)
+        Cuenta cuenta = new Cuenta("John Doe", new BigDecimal("8900.9997")); // Crea una instancia de Cuenta
+        Cuenta cuenta2 = new Cuenta("John Roe", new BigDecimal("8900.9997")); // Crea otra instancia de Cuenta con datos similares
 
-        // Assert
-        // Verifica si el valor real es igual al esperado. Falla si no lo son.
-        assertEquals(esperado, real); 
+        assertEquals(cuenta2, cuenta); // Asegura que las dos instancias SON iguales (se espera que falle inicialmente)
     }
-
-    //Ejemplo 2
-    @Test
-    void testNombreCuenta() {
-        //Arrange: Preparamos los datos de prueba
-        Cuenta cuenta = new Cuenta("Andres", new BigDecimal("1000.12345"));
-        String esperado = "Andres";  // Valor que esperamos obtener
-        
-        //Act: Ejecutamos la operación a probar
-        String real = cuenta.getPersona();  // Obtenemos el valor real
-        
-        //Assert: Verificamos el resultado
-        assertEquals(esperado, real);  // Comparamos esperado vs real
-    }
-
-    //Ejemplo 3
-    @Test
-        void testNombreCuenta() {
-        Cuenta cuenta = new Cuenta("Andres", new BigDecimal("1000.12345"));
-        String real = cuenta.getPersona();
-        assertTrue(real.equals("Andre"));  // Esta prueba fallará
-    }
-        
 }

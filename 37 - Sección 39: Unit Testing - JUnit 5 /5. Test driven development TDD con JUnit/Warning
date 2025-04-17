@@ -1,4 +1,4 @@
-Los 3 ejemplos en CuentaTest.java no pueden ejecutarse simultáneamente porque:
+Los 2 ejemplos en CuentaTest.java no pueden ejecutarse simultáneamente porque:
 - Tienen el mismo nombre "testNombreCuenta" (duplicado)
 - Esto genera errores de compilación
 - Puede causar fallas inesperadas al ejecutar
