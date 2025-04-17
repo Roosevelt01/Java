@@ -1,0 +1,15 @@
+Los 3 ejemplos en CuentaTest.java no pueden ejecutarse simultáneamente porque:
+- Tienen el mismo nombre "testNombreCuenta" (duplicado)
+- Esto genera errores de compilación
+- Puede causar fallas inesperadas al ejecutar
+
+Solución recomendada:
+1. Renombrar cada método según lo que prueba:
+   - ej: testConstructorCuenta(), testSetterPersona(), etc.
+2. Usar @DisplayName para describir mejor cada prueba
+3. Agrupar pruebas relacionadas con @Nested
+
+Cambios necesarios para permitir:
+- Ejecución individual de cada prueba
+- Ejecución completa del test suite
+- Reportes claros de resultados
