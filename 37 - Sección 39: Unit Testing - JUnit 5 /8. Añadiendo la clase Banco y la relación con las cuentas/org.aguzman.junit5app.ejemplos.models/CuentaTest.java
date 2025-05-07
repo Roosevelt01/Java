@@ -56,25 +56,56 @@ class CuentaTest{
         assertEquals("1100.12345", cuenta.getSaldo().toPlainString());
     }
 
-    // Paso 2 en la transcripción (se refiere a la creación del test): Prueba para manejar excepción de dinero insuficiente
     @Test
-    void testDineroInsuficienteExceptionCeunta() { // Nombre del método de prueba
+    void testDineroInsuficienteExceptionCeunta() {
 
-       // Paso 1: Configuración (Arrange) - Crear el objeto de prueba con saldo
-       Cuenta cuenta = new Cuenta("Andres", new BigDecimal("1000.12345")); // Saldo inicial
-
-       // Paso 2: Acción & Aserción (Act & Assert) - Intentar la operación y afirmar la excepción
-       // assertThrows espera 1) el tipo de excepción, 2) un lambda con el código que la lanza
+       Cuenta cuenta = new Cuenta("Andres", new BigDecimal("1000.12345"));
+       
        Exception exception = assertThrows(DineroInsuficienteException.class, ()->{
-           // Código dentro del lambda: intenta debitar un monto mayor al saldo
-           cuenta.debito((new BigDecimal(1500))); // Monto a debitar
-       }); //assertThrows captura la excepción si se lanza y la retorna
+           cuenta.debito((new BigDecimal(1500)));
+       }); 
 
-       // Paso 3: Verificación Adicional (Assert) - Opcional, verificar el mensaje de la excepción
-       String actualMensaje = exception.getMessage(); // Obtiene el mensaje de la excepción capturada
-       String esperadoMensaje = "Dinero Insuficiente"; // Define el mensaje esperado
-       // Nota en el código original: Se menciona la duda "Necesito saber que pasa si coloca 'Dinero Insuficiente en la cuenta'"
-       // Esta línea verifica que el mensaje REAL sea igual al mensaje ESPERADO
-       assertEquals(esperadoMensaje, actualMensaje); // Afirma que el mensaje real coincide con el esperado
+       String actualMensaje = exception.getMessage(); 
+       String esperadoMensaje = "Dinero Insuficiente";
+       assertEquals(esperadoMensaje, actualMensaje); 
+    }
+
+    @Test
+    void testTransferirDineroCuentas() {
+        // 1. Preparación: Crear cuentas con saldos iniciales
+        Cuenta cuenta1 = new Cuenta("Jhon Doe", new BigDecimal("2500")); // Cuenta con $2500
+        Cuenta cuenta2 = new Cuenta("Jhon Doe", new BigDecimal("1500.8989")); // Cuenta con $1500.8989
+        
+        // 2. Configuración: Crear banco y establecer nombre
+        Banco banco = new Banco();
+        banco.setNombre("Nombre del estado");
+        
+        // 3. Acción: Transferir $500 de cuenta2 a cuenta1
+        banco.transferir(cuenta2, cuenta1, new BigDecimal(500));
+        
+        // 4. Verificaciones:
+        assertEquals("1000.8989", cuenta2.getSaldo().toPlainString()); // Verifica saldo después de débito
+        assertEquals("3000", cuenta1.getSaldo().toPlainString()); // Verifica saldo después de crédito
+    }
+
+    @Test
+    void testRelacionBancoCuentas() {
+        // 1. Preparación: Crear cuentas
+        Cuenta cuenta1 = new Cuenta("Jhon Doe", new BigDecimal("2500"));
+        Cuenta cuenta2 = new Cuenta("Jhon Doe", new BigDecimal("1500.8989"));
+        
+        // 2. Configuración: Crear banco y agregar cuentas
+        Banco banco = new Banco();
+        banco.addCuenta(cuenta1); // Agrega cuenta1 al banco
+        banco.addCuenta(cuenta2); // Agrega cuenta2 al banco
+        banco.setNombre("Nombre del estado");
+        
+        // 3. Acción: Realizar transferencia
+        banco.transferir(cuenta2, cuenta1, new BigDecimal(500));
+        
+        // 4. Verificaciones combinadas:
+        assertEquals("1000.8989", cuenta2.getSaldo().toPlainString()); // Verifica saldo cuenta origen
+        assertEquals("3000", cuenta1.getSaldo().toPlainString()); // Verifica saldo cuenta destino
+        assertEquals(2, banco.getCuentas().size()); // Verifica que el banco tiene 2 cuentas registradas
     }
 }
