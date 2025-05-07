@@ -12,6 +12,10 @@ public class Banco {
         cuentas = new ArrayList<>();// inicializa la lista para evitar NullPointerException
     }
 
+    // ... (Otro constructor si existe, getters y setters para nombre y cuentas) ...
+
+    // ... (Método addCuenta y transferir) ...
+
     public Banco(List<Cuenta> cuentas) {
         this.cuentas = cuentas;
     }

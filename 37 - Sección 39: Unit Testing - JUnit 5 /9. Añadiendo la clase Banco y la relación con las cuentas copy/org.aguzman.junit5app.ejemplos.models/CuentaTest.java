@@ -104,12 +104,12 @@ class CuentaTest{
         // Paso 3: verificar que la cuenta conoce su banco
         assertEquals("Banco del Estado", cuenta1.getBanco().getNombre());
 
-        // Paso 4: buscar cuenta con persona "Andres"
-        assertEquals("Andres", banco.getCuentas().stream()
-                .filter(c -> c.getPersona().equals("Andres"))
-                .findFirst()
-                .get()
-                .getPersona());
+        // Paso 4 (del código): Verificar usando Stream API (filter/findFirst/get)
+        assertEquals("Andres", banco.getCuentas().stream()    // Obtiene un Stream<Cuenta> de la lista
+                .filter(c -> c.getPersona().equals("Andres")) // Filtra: se queda solo con las cuentas cuya persona es "Andres"
+                .findFirst()                                  // Encuentra el primer elemento que coincide (devuelve Optional<Cuenta>)
+                .get()                                        // Obtiene el objeto Cuenta del Optional (lanza excepción si está vacío)
+                .getPersona());                               // Obtiene el nombre de la persona de esa Cuenta
 
         // Paso 5: verificar que existe al menos una cuenta con persona "Andres"
         assertTrue(banco.getCuentas().stream()
