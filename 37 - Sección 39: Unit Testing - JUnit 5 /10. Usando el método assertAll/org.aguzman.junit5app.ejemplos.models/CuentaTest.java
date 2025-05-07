@@ -93,26 +93,25 @@ class CuentaTest{
         banco.addCuenta(cuenta1); 
         banco.addCuenta(cuenta2);
         banco.setNombre("Nombre del estado");
-        
         banco.transferir(cuenta2, cuenta1, new BigDecimal(500));
         
-        assertEquals("1000.8989", cuenta2.getSaldo().toPlainString()); // Verifica saldo cuenta origen
-        assertEquals("3000", cuenta1.getSaldo().toPlainString()); // Verifica saldo cuenta destino
-        assertEquals(2, banco.getCuentas().size()); // Verifica que el banco tiene 2 cuentas registradas
-
-        
-        // Paso 3: verificar que la cuenta conoce su banco
-        assertEquals("Banco del Estado", cuenta1.getBanco().getNombre());
-
-        // Paso 4: Verificar usando Stream API (filter/findFirst/get)
-        assertEquals("Andres", banco.getCuentas().stream()    // Obtiene un Stream<Cuenta> de la lista
-                .filter(c -> c.getPersona().equals("Andres")) // Filtra: se queda solo con las cuentas cuya persona es "Andres"
-                .findFirst()                                  // Encuentra el primer elemento que coincide (devuelve Optional<Cuenta>)
-                .get()                                        // Obtiene el objeto Cuenta del Optional (lanza excepción si está vacío)
-                .getPersona());                               // Obtiene el nombre de la persona de esa Cuenta
-
-        // Paso 5: Verificar usando Stream API (anyMatch) - más eficiente para chequear existencia
-        assertTrue(banco.getCuentas().stream()// Obtiene un Stream<Cuenta>
-                .anyMatch(c -> c.getPersona().equals("Andres"))); // Verifica si AL MENOS UN elemento cumple la condición
+        // Agrupar todas las aserciones con assertAll
+        assertAll(
+            // Cada aserción se envuelve en una expresión lambda () -> ...
+            () -> assertEquals("1000.8989", cuenta2.getSaldo().toPlainString(),
+                        "Saldo cuenta 2 (origen) incorrecto tras transferir."), // Mensaje opcional añadido
+            () -> assertEquals("3000", cuenta1.getSaldo().toPlainString(),
+                        "Saldo cuenta 1 (destino) incorrecto tras transferir."),
+            () -> assertEquals(2, banco.getCuentas().size(),
+                        "El banco no tiene el número esperado de cuentas."),
+            () -> assertEquals("Banco del Estado", cuenta1.getBanco().getNombre(),
+                        "El nombre del banco asociado a cuenta1 es incorrecto."),
+            () -> assertEquals("Andres", banco.getCuentas().stream()
+                            .filter(c -> c.getPersona().equals("Andres"))
+                            .findFirst()
+                            .get().getPersona(), "No se encontró la persona 'Andres' vía stream/filter."),
+            () -> assertTrue(banco.getCuentas().stream()
+                        .anyMatch(c -> c.getPersona().equals("Andres")), "No se encontró 'Andres' vía stream/anyMatch.")
+        ); 
     }
 }
