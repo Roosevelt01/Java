@@ -112,6 +112,6 @@ class CuentaTest{
                             .get().getPersona(), "No se encontró la persona 'Andres' vía stream/filter."),
             () -> assertTrue(banco.getCuentas().stream()
                         .anyMatch(c -> c.getPersona().equals("Andres")), "No se encontró 'Andres' vía stream/anyMatch.")
-        ); 
+        ); gfg
     }
 }
