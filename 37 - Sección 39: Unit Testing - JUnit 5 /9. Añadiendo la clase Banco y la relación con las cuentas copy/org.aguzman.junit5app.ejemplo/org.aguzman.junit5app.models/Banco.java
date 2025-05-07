@@ -34,7 +34,7 @@ public class Banco {
 
     public void addCuenta(Cuenta cuenta){
         cuentas.add(cuenta);
-        cuenta.setBanco(this);//Paso 4: Paso 4: asigna este banco a la cuenta para mantener la relación
+        cuenta.setBanco(this);// Paso 4: asigna este banco a la cuenta para mantener la relación
     }
 
     public void transferir(Cuenta origen, Cuenta destino, BigDecimal monto){
