@@ -8,8 +8,8 @@ public class Banco {
     private List<Cuenta> cuentas;
     private String nombre;
 
-    public Banco() {//Paso 1
-        cuentas = new ArrayList<>();//Paso
+    public Banco() {//Paso 1: Constructor sin parámetros: inicializa la lista de cuentas vacía 
+        cuentas = new ArrayList<>();// inicializa la lista para evitar NullPointerException
     }
 
     public Banco(List<Cuenta> cuentas) {
@@ -34,7 +34,7 @@ public class Banco {
 
     public void addCuenta(Cuenta cuenta){
         cuentas.add(cuenta);
-        cuenta.setBanco(this);//Paso 4
+        cuenta.setBanco(this);//Paso 4: Paso 4: asigna este banco a la cuenta para mantener la relación
     }
 
     public void transferir(Cuenta origen, Cuenta destino, BigDecimal monto){
