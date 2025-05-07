@@ -104,7 +104,7 @@ class CuentaTest{
         // Paso 3: verificar que la cuenta conoce su banco
         assertEquals("Banco del Estado", cuenta1.getBanco().getNombre());
 
-        // Paso 4 (del código): Verificar usando Stream API (filter/findFirst/get)
+        // Paso 4: Verificar usando Stream API (filter/findFirst/get)
         assertEquals("Andres", banco.getCuentas().stream()    // Obtiene un Stream<Cuenta> de la lista
                 .filter(c -> c.getPersona().equals("Andres")) // Filtra: se queda solo con las cuentas cuya persona es "Andres"
                 .findFirst()                                  // Encuentra el primer elemento que coincide (devuelve Optional<Cuenta>)
