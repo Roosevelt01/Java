@@ -84,10 +84,10 @@ class CuentaTest {
     }
 
     @Test
-    @Disabled//Paso 2
-    @DisplayName("probando relaciones entre las cuentas y el banco  con assertAll")//Paso 3
+    @Disabled//Paso 2: Deshabilita temporalmente esta prueba
+    @DisplayName("probando relaciones entre las cuentas y el banco  con assertAll")//Paso 3: Descripción clara del test
     void testRelacionBancoCuentas() {
-        fail();//Paso 4
+        fail();//Paso 4: Fuerza el fallo del test (usado para demostración)
         Cuenta cuenta1 = new Cuenta("Jhon Doe", new BigDecimal("2500"));
         Cuenta cuenta2 = new Cuenta("Andres", new BigDecimal("1500.8989"));
 
@@ -108,6 +108,8 @@ class CuentaTest {
                                 .get().getPersona()),
                 () -> assertTrue(banco.getCuentas().stream()
                             .anyMatch(c -> c.getPersona().equals("Andres"))));
-
     }
 }
+
+
+
