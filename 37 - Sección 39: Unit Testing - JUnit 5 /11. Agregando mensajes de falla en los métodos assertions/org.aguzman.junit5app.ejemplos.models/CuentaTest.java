@@ -111,5 +111,13 @@ class CuentaTest {
     }
 }
 
+import org.junit.jupiter.api.Assertions;
+// ...
 
+@Test
+void testThatShouldFail() {
+    // ... código de la prueba ...
+    Assertions.fail("Se encontró una condición inesperada y la prueba debe fallar aquí.");
+    // El código después de fail() no se ejecutará
+}
 
