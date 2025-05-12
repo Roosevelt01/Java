@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CuentaTest {
     // Declara una variable de instancia para el objeto que se configurará antes de cada test.
     Cuenta cuenta;
-
+    
     // Paso 1: Método anotado con @BeforeEach para la configuración antes de CADA método @Test
     @BeforeEach // Anotación para ejecutar antes de cada @Test
     void initMetodoTest(){ // Este es un método de instancia (no static)
