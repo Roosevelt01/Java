@@ -138,5 +138,18 @@ import org.junit.jupiter.api.TestInstance.Lifecycle; // Import estático para ac
 
 @TestInstance(Lifecycle.PER_CLASS) // Paso 1: Configura el ciclo de vida a Per-Class
 class CuentaTest {
-    // ... contenido de la clase ...
+    // Paso 2: Método anotado con @BeforeAll (NO estático en modo PER_CLASS)
+    @BeforeAll // Anotación para ejecutar una sola vez antes de todos los @Test
+    void beforeAll(){ // No necesita ser static en modo PER_CLASS
+        System.out.println("Inicializando el test - @BeforeAll"); // Mensaje de visualización
+        // Aquí se podría configurar un recurso pesado que se usará UNA sola vez por clase
+        // y que puede ser accedido a través de variables de instancia si fuera necesario.
+    }
+
+    // Paso 3: Método anotado con @AfterAll (NO estático en modo PER_CLASS)
+    @AfterAll // Anotación para ejecutar una sola vez después de todos los @Test
+    void afterAll(){ // No necesita ser static en modo PER_CLASS
+        System.out.println("Finalizando el test - @AfterAll"); // Mensaje de visualización
+        // Aquí se podría limpiar el recurso configurado en beforeAll.
+    }
 }
