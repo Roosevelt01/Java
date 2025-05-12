@@ -130,3 +130,13 @@ class CuentaTest {
                             .anyMatch(c -> c.getPersona().equals("Andres"))));
     }
 }
+
+//@TestInstance(Lifecycle.PER_CLASS)
+
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle; // Import estático para acortar
+
+@TestInstance(Lifecycle.PER_CLASS) // Paso 1: Configura el ciclo de vida a Per-Class
+class CuentaTest {
+    // ... contenido de la clase ...
+}
