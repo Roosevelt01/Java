@@ -1,4 +1,5 @@
 package org.aguzman.junit5app.ejemplos.models;
+
 import org.aguzman.junit5app.ejemplos.exceptions.DineroInsuficienteException;
 import org.junit.jupiter.api.*;
 
@@ -7,31 +8,34 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CuentaTest {
-    // Paso 1: Declarar una variable de instancia para el objeto Cuenta
     Cuenta cuenta;
 
-    // Paso 2: Crear un método anotado con @BeforeEach para la configuración antes de CADA test
-    @BeforeEach // Anotación para ejecutar antes de cada @Test
+    @BeforeEach
     void initMetodoTest(){
-        // Inicializar la variable de instancia 'cuenta'
-        // Esta línea se ejecutará antes de cada test, creando una nueva instancia para cada uno.
-        this.cuenta = new Cuenta("Andres GF", new BigDecimal("1000.12345"));
-        // Imprimir un mensaje para visualizar la ejecución del hook
-        System.out.println("Iniciando el método de prueba. ");
+        this.cuenta = new Cuenta("Andres", new BigDecimal("1000.12345"));
+        System.out.println("Iniciando el método. ");
     }
 
-    // Paso 3: Crear un método anotado con @AfterEach para la limpieza después de CADA test
-    @AfterEach // Anotación para ejecutar después de cada @Test
+    @AfterEach
     void tearDown() {
-        // Imprimir un mensaje para visualizar la ejecución del hook de limpieza
         System.out.println("Finalizando el método de prueba.");
-        // En pruebas reales, aquí se liberan recursos (cerrar conexiones, borrar archivos, etc.)
+    }
+
+    // Paso 1: Método anotado con @BeforeAll para configuración a nivel de clase
+    @BeforeAll // Anotación para ejecutar una sola vez antes de todos los @Test
+    static void beforeAll(){ // Debe ser static
+        System.out.println("Inicializando el test - @BeforeAll"); // Mensaje de visualización
+    }
+
+    // Paso 2: Método anotado con @AfterAll para limpieza a nivel de clase
+    @AfterAll // Anotación para ejecutar una sola vez después de todos los @Test
+    static void afterAll(){ // Debe ser static
+        System.out.println("Finalizando el test - @AfterAll"); // Mensaje de visualización
     }
 
     @Test
     @DisplayName("probando el nombre de la cuenta corriente, que no sea null mayor que cero, valor esperado!")
     void testNombreCuenta() {
-        // Ya no necesitamos crear 'cuenta' aquí, @BeforeEach lo hace por nosotros.
         String esperado = "Andres";
         String real = cuenta.getPersona();
         assertNotNull(real, () -> "La cuenta no puede ser nula");
@@ -41,19 +45,19 @@ class CuentaTest {
     }
 
     @Test
-    @DisplayName("probando el nombre de la cuenta corriente!")
+    @DisplayName("probando el nombre de la cuenta corriente(Que no sea null, mayor que cero, valor esperado)")
     void testSaldoCuenta() {
-        // Usamos la variable de instancia inicializada por @BeforeEach
         cuenta = new Cuenta("Andres", new BigDecimal("1000.12345"));
         assertNotNull(cuenta.getSaldo());
         assertEquals(1000.12345, cuenta.getSaldo().doubleValue());
         assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) < 0);
-        assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0);
+        assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0);
+
     }
 
     @Test
+    @DisplayName("probando el nombre de la cuenta corriente!")
     void TestReferenciaCuenta() {
-        
         cuenta = new Cuenta("John Doe", new BigDecimal("8900.9997"));
         Cuenta cuenta2 = new Cuenta("John Doe", new BigDecimal("8900.9997"));
 
@@ -62,7 +66,6 @@ class CuentaTest {
 
     @Test
     void testDebitoCuenta() {
-        // Usa la variable de instancia 'cuenta' inicializada por @BeforeEach
         cuenta.debito(new BigDecimal(100));
         assertNotNull(cuenta.getSaldo());
         assertEquals(900, cuenta.getSaldo().intValue());
@@ -71,7 +74,6 @@ class CuentaTest {
 
     @Test
     void testCreditoCuenta() {
-        // Usa la variable de instancia 'cuenta' inicializada por @BeforeEach
         cuenta.credito(new BigDecimal(100));
         assertNotNull(cuenta.getSaldo());
         assertEquals(1100, cuenta.getSaldo().intValue());
@@ -105,7 +107,7 @@ class CuentaTest {
     @Disabled
     @DisplayName("probando relaciones entre las cuentas y el banco  con assertAll")
     void testRelacionBancoCuentas() {
-        fail();// Esta línea no se ejecutará debido a @Disabled
+        fail();
         Cuenta cuenta1 = new Cuenta("Jhon Doe", new BigDecimal("2500"));
         Cuenta cuenta2 = new Cuenta("Andres", new BigDecimal("1500.8989"));
 
