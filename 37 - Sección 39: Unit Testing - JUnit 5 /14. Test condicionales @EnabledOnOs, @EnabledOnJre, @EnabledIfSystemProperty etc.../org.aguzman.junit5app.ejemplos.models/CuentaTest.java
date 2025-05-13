@@ -171,39 +171,37 @@ class CuentaTest {
         properties.forEach((k,v) -> System.out.println(k + ":" +v));
     }
 
-    //Paso 7
+    // Paso 7: Imprime todas las propiedades del sistema para referencia
+    @Test
+    void imprimirSystemProperties(){
+        Properties properties = System.getProperties();
+        properties.forEach((k,v) -> System.out.println(k + ":" +v));
+    }
+
+    // Paso 8: Ejecuta esta prueba solo si la versión de Java es exactamente "23.0.1+11-39"
     @Test
     @EnabledIfSystemProperty(named = "java.version", matches = "23.0.1+11-39")
-    void testJavaVersion(){
+    void testJavaVersion(){}
 
-    }
-
-    //Paso 7.1
+    // Paso 9: Ejecuta esta prueba si la versión de Java contiene "23"
     @Test
     @EnabledIfSystemProperty(named = "java.version", matches = ".*23*.")
-    void testJavaVersion2(){
+    void testJavaVersion2(){}
 
-    }
-
-    //Paso 8
+    // Paso 10: Deshabilita esta prueba si la arquitectura del sistema contiene "32"
     @Test
     @DisabledIfSystemProperty(named = "OS.arch", matches = ".*32.*")
-    void testsolo64(){
+    void testsolo64(){}
 
-    }
-
-    //Paso 8.1
+    // Paso 11: Ejecuta esta prueba solo si la arquitectura del sistema contiene "32"
     @Test
     @EnabledIfSystemProperty(named = "OS.arch", matches = ".*32.*")
-    void testNo64(){
+    void testNo64(){}
 
-    }
-
-    //Paso 9
+    //  Paso 12: Ejecuta esta prueba solo si el nombre de usuario es "Alejandro"
     @Test
     @EnabledIfSystemProperty(named = "user.name", matches = "Alejandro")
-    void testUsername(){
+    void testUsername(){}
 
-    }
 }
 
