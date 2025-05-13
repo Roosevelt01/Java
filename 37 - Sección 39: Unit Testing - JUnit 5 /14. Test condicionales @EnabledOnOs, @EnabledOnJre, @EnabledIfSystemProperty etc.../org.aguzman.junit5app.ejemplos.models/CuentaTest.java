@@ -164,7 +164,7 @@ class CuentaTest {
 
     }
 
-    //Paso 6
+    //Paso 6: Imprime todas las propiedades del sistema para referencia
     @Test
     void imprimirSystemProperties(){
         Properties properties = System.getProperties();
