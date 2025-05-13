@@ -150,14 +150,14 @@ class CuentaTest {
 
     }
 
-    //Paso 4
+    // Ejecuta esta prueba solo en JDK 8
     @Test
     @EnabledOnJre(JRE.JAVA_8)
     void soloJdk8(){
 
     }
 
-    //Paso 5
+    // Deshabilita esta prueba en JDK 18
     @Test
     @DisabledOnJre(JRE.JAVA_18)
     void testNoJDK18(){
